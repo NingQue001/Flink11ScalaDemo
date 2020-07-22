@@ -34,6 +34,8 @@
         </dependency>
 
 
+
+
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka_${scala-version}</artifactId>
@@ -42,6 +44,11 @@
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-api-scala-bridge_${scala-version}</artifactId>
+            <version>${flink-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-api-java-bridge_${scala-version}</artifactId>
             <version>${flink-version}</version>
         </dependency>
         <dependency>
@@ -88,6 +95,13 @@
             <version>5.1.48</version>
         </dependency>
         <!-- flinksql cli jar end -->
+
+        <!-- orc？？？ 列式存储数据 -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-orc_2.11</artifactId>
+            <version>${flink-version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
@@ -136,6 +150,14 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
