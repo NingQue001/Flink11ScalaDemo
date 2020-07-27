@@ -33,9 +33,6 @@
             <version>${flink-version}</version>
         </dependency>
 
-
-
-
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka_${scala-version}</artifactId>
@@ -56,6 +53,21 @@
             <artifactId>flink-table-planner-blink_${scala-version}</artifactId>
             <version>${flink-version}</version>
         </dependency>
+
+        <!-- FLINK BATCH QUERY
+             // ******************
+                import org.apache.flink.api.java.ExecutionEnvironment;
+                import org.apache.flink.table.api.bridge.java.BatchTableEnvironment;
+                使用的是旧版的planner
+        -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-table-planner_${scala-version}</artifactId>
+            <version>${flink-version}</version>
+        </dependency>
+
+
+
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-common</artifactId>
@@ -100,6 +112,12 @@
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-orc_2.11</artifactId>
+            <version>${flink-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-csv</artifactId>
             <version>${flink-version}</version>
         </dependency>
 
