@@ -1,10 +1,14 @@
 package com.anven.jtableAndSql;
 
+import org.apache.flink.api.common.typeinfo.TypeInformation;
+import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.ExecutionEnvironment;
 import org.apache.flink.api.java.operators.DataSource;
 import org.apache.flink.api.java.tuple.Tuple1;
 import org.apache.flink.table.api.Table;
 import org.apache.flink.table.api.bridge.java.BatchTableEnvironment;
+import org.apache.flink.table.sinks.CsvTableSink;
+import org.apache.flink.table.sinks.TableSink;
 import org.apache.flink.types.Row;
 
 public class JavaBatchWordCount {
@@ -49,5 +53,6 @@ public class JavaBatchWordCount {
 
         tEnv.toDataSet(table, Row.class).print();
 
+        
     }
 }
