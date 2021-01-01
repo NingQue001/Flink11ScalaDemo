@@ -51,6 +51,7 @@ public class WindowTest {
                 .keyBy((KeySelector<Order, Long>) Order :: getUser)
                 .window(TumblingEventTimeWindows.of(Time.minutes(5)))
                 .trigger(EventTimeTrigger.create())
+                // AggregateFunction和ProcessWIndowFunction配合使用
                 .aggregate(new MyAggregation(), new MyProcessWindowFunction());
 
        result1.print();
