@@ -53,8 +53,7 @@ public class FlinkDeltaTriggerDemo {
                 new Tuple4(2, 184, 21000d, getTime("2020-12-30 20:11:00"))
         ));
 
-//        DataStream topSpeeds =
-                carData
+        DataStream<String> topSpeeds = carData
                 .assignTimestampsAndWatermarks(new BoundedOutOfOrdernessTimestampExtractor<Tuple4<Integer, Integer, Double, Long>>(Time.minutes(1)) {
                     @Override
                     public long extractTimestamp(Tuple4<Integer, Integer, Double, Long> element) {
@@ -91,11 +90,9 @@ public class FlinkDeltaTriggerDemo {
                     public void process(Tuple tuple, Context context, Iterable<Integer> elements, Collector<String> out) throws Exception {
                         out.collect("Key" + tuple.toString() + " TopSpeed: " + elements.iterator().next());
                     }
-                })
-                .print();
+                });
 
-
-//        topSpeeds.print();
+        topSpeeds.print();
 
         env.execute();
 
