@@ -17,6 +17,11 @@ import org.apache.flink.api.java.tuple.Tuple3;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * CEP
+ * 核心：NFA(非确定性有限状态自动机，No-deterministic Finite Automation)
+ *
+ */
 public class TestCEP {
 
     public static void main(String[] args) throws Exception {
@@ -53,10 +58,10 @@ public class TestCEP {
                         return value.f2.equals("pay");
                     }
                 }
-        ).within(Time.seconds(3));
+        ).within(Time.seconds(5));
 
         PatternStream<Tuple3<String, String, String>> patternStream = CEP
-                .pattern(myDataStream.keyBy(0), myPattern);
+                .pattern(myDataStream.keyBy(1), myPattern);
 
         // 定义超时的订单
         OutputTag<String> timeOutOrder = new OutputTag<String>("timeOutOrder") {};
@@ -65,8 +70,8 @@ public class TestCEP {
                     @Override
                     public String timeout(Map<String, List<Tuple3<String, String, String>>> map, long l) throws Exception {
                         List<Tuple3<String, String, String>> start = map.get("start");
-                        Tuple3<String, String, String> tuple3 = start.get(0);
-                        return "迟到的订单：" + tuple3.toString();
+                        Tuple3<String, String, String> startTuple = start.get(0);
+                        return "迟到的订单:[startTuple:" + startTuple.toString() + "]";
                     }
                 }, new PatternSelectFunction<Tuple3<String, String, String>, String>() {
                     @Override
@@ -76,8 +81,8 @@ public class TestCEP {
                         // 匹配上第二个条件
                         List<Tuple3<String, String, String>> next = map.get("next");
 
-                        Tuple3<String, String, String> tuple3 = next.get(0);
-                        return "正常的订单：" + tuple3.toString();
+                        Tuple3<String, String, String> nextTuple = next.get(0);
+                        return "正常的订单：[nextTuple:" + nextTuple.toString() + "]";
                     }
                 }
         );

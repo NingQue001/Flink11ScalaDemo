@@ -47,6 +47,12 @@ public class StaticSource extends RichSourceFunction<String> {
         map.put("behave","pay");
         ctx.collect(JSON.toJSONString(map));
         Thread.sleep(3000);
+
+        map.put("userid","2");
+        map.put("orderid","2223");
+        map.put("behave","pay");
+        ctx.collect(JSON.toJSONString(map));
+        Thread.sleep(3000);
     }
 
     @Override
