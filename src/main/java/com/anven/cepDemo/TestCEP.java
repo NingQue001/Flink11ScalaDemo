@@ -58,7 +58,7 @@ public class TestCEP {
                         return value.f2.equals("pay");
                     }
                 }
-        ).within(Time.seconds(5));
+        ).within(Time.seconds(5)); /*TODO 定义窗口时间*/
 
         PatternStream<Tuple3<String, String, String>> patternStream = CEP
                 .pattern(myDataStream.keyBy(1), myPattern);
