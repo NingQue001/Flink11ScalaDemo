@@ -12,6 +12,9 @@ import java.util.List;
 
 import static org.apache.flink.table.api.Expressions.$;
 
+/**
+ * 临时表
+ */
 public class TemporalTableFunDemo {
     public static void main(String[] args) {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -28,13 +31,15 @@ public class TemporalTableFunDemo {
         Table ratesHistory = tEnv.fromDataStream(ratesHistoryStream
         , $("r_currency")
         , $("r_rate")
+                // 设置时间属性
         , $("r_proctime").proctime());
         tEnv.createTemporaryView("RatesHistory", ratesHistory);
 
+        /*TODO 创建临时表*/
         TemporalTableFunction rates = ratesHistory.createTemporalTableFunction("r_proctime"
         , "r_currency");
         tEnv.registerFunction("Rates", rates);
 
-        // Flink SQL use Rates() Function
+        // 如何使用
     }
 }
