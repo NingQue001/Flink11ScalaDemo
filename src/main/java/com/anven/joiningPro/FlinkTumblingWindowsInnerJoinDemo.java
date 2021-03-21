@@ -1,4 +1,4 @@
-package joiningPro;
+package com.anven.joiningPro;
 
 import org.apache.flink.api.common.functions.JoinFunction;
 import org.apache.flink.api.java.functions.KeySelector;

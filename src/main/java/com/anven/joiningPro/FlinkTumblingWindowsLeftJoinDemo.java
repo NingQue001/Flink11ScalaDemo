@@ -1,7 +1,6 @@
-package joiningPro;
+package com.anven.joiningPro;
 
 import org.apache.flink.api.common.functions.CoGroupFunction;
-import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.api.java.tuple.Tuple5;
 import org.apache.flink.streaming.api.TimeCharacteristic;

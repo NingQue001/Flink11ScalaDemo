@@ -1,4 +1,4 @@
-package joiningPro;
+package com.anven.joiningPro;
 
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
