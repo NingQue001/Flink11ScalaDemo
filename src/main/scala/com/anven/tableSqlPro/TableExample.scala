@@ -1,4 +1,4 @@
-package com.anven.tablePro
+package com.anven.tableSqlPro
 
 import org.apache.flink.streaming.api.scala._
 import org.apache.flink.table.api._
@@ -33,7 +33,12 @@ object TableExample extends App {
   // 创建视图
   tableEnv.createTemporaryView("sensor", dataStream)
   // 使用Flink SQL
-  val sqlTable: Table = tableEnv.sqlQuery("select id, temperature from sensor where id = '2' ")
+  val sqlTable: Table = tableEnv.sqlQuery(
+    """
+    |select id, temperature
+    |from sensor
+    |where id = '2'
+    """.stripMargin)  // 使用scala字符拼接
   sqlTable.toAppendStream[(String, Double)].print()
 
   env.execute("TableExample")
