@@ -30,5 +30,11 @@ object TableExample extends App {
   val resultStream: DataStream[(String, Double)] = resultTable.toAppendStream[(String, Double)]
   resultStream.print()
 
+  // 创建视图
+  tableEnv.createTemporaryView("sensor", dataStream)
+  // 使用Flink SQL
+  val sqlTable: Table = tableEnv.sqlQuery("select id, temperature from sensor where id = '2' ")
+  sqlTable.toAppendStream[(String, Double)].print()
+
   env.execute("TableExample")
 }
