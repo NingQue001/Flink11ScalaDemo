@@ -10,8 +10,8 @@
     <packaging>jar</packaging>
 
     <properties>
-        <flink-version>1.11.0</flink-version>
-        <scala-version>2.11</scala-version>
+        <flink-version>1.11.1</flink-version>
+        <scala-version>2.12</scala-version>
     </properties>
 
     <dependencies>
@@ -51,6 +51,11 @@
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-planner-blink_${scala-version}</artifactId>
+            <version>${flink-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-core</artifactId>
             <version>${flink-version}</version>
         </dependency>
 
@@ -125,6 +130,24 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-hadoop-compatibility_2.11</artifactId>
             <version>${flink-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-cep_${scala-version}</artifactId>
+            <version>${flink-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-java-examples_2.11</artifactId>
+            <version>0.10.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.73</version>
         </dependency>
     </dependencies>
 
