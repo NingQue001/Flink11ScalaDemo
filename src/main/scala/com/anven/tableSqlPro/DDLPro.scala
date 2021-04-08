@@ -23,12 +23,19 @@ object DDLPro {
     /*TODO 熟悉TableResult的使用*/
     val tableResult: TableResult = tableEnv.sqlQuery("SELECT * FROM sensor").execute()
 //    tableResult.print()
-    val it = tableResult.collect()
-    while (it.hasNext) {
-      val row1: Row = it.next()
-      println(row1)
-    }
+//    val it = tableResult.collect()
+//    while (it.hasNext) {
+//      val row1: Row = it.next()
+//      println(row1)
+//    }
 
-    // env.execute("DDLPro")
+    val sqlTable = tableEnv.sqlQuery(
+      """
+        |select id, temperature, ts
+        |from sensor
+        |""".stripMargin)
+    sqlTable.toAppendStream[Row].print("sqlTable")
+
+    env.execute("DDLPro")
   }
 }
