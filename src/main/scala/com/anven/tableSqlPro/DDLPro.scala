@@ -29,6 +29,7 @@ object DDLPro {
 //      println(row1)
 //    }
 
+    /**TODO 研究SQL语句如何实现基于事件事件的watermark  */
     val sqlTable = tableEnv.sqlQuery(
       """
         |select id, temperature, ts
