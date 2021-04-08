@@ -28,9 +28,9 @@ object WindowAggPro {
     val dataStream: DataStream[SensorReading] = inputStream.map(data => {
       val dataArray = data.split(",")
       SensorReading(dataArray(0), dataArray(1).toDouble, dataArray(2).toLong)
-      /**TODO 分配时间戳和水印  */
+      /**分配时间戳和水印  */
     }).assignTimestampsAndWatermarks(assigner = new BoundedOutOfOrdernessTimestampExtractor[SensorReading](Time.seconds(1)) {
-      override def extractTimestamp(t: SensorReading): Long = t.ts /**TODO 乘以1000起什么作用？？？  */
+      override def extractTimestamp(t: SensorReading): Long = t.ts
     })
 
     // 将流转化为表
