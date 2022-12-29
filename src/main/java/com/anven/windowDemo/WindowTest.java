@@ -11,17 +11,13 @@ import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindo
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.api.windowing.triggers.EventTimeTrigger;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
-import org.apache.flink.table.expressions.In;
 import org.apache.flink.table.shaded.org.joda.time.DateTime;
 import org.apache.flink.table.shaded.org.joda.time.DateTimeZone;
 import org.apache.flink.util.Collector;
-
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Map;
 
 public class WindowTest {
     public static void main(String[] args) throws Exception {
@@ -41,6 +37,12 @@ public class WindowTest {
                 new Order(2L, "bike", 1, getTime("2020-12-30 20:06:00"))
         ));
 
+        /**
+         * 知识点：
+         * 1）watermark
+         * 有序数据：AscendingTimestampExtractor
+         * 乱序数据：BoundedOutOfOrdernessTimestampExtractor
+         */
        DataStream<String> result1 = orders
                 .assignTimestampsAndWatermarks(new BoundedOutOfOrdernessTimestampExtractor<Order>(Time.minutes(1)) {
                     @Override
@@ -56,7 +58,7 @@ public class WindowTest {
 
        result1.print();
 
-       env.execute();
+       env.execute("WindowTest");
 
     }
 
@@ -95,7 +97,7 @@ public class WindowTest {
             int sum = elements.iterator().next();
 
             String windowStart = new DateTime(context.window().getStart(), DateTimeZone.forID("+08:00")).toString("yyyy-mm-dd HH:mm:ss");
-            String windowEnd = new DateTime(context.window().getStart(), DateTimeZone.forID("+08:00")).toString("yyyy-mm-dd HH:mm:ss");
+            String windowEnd = new DateTime(context.window().getEnd(), DateTimeZone.forID("+08:00")).toString("yyyy-mm-dd HH:mm:ss");
 
             String record = "Key: " + key + " 窗口开始时间: " + windowStart + " 窗口结束时间: " + windowEnd+" 下单商品的数量: " + sum;
             out.collect(record);

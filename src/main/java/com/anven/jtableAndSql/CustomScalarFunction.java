@@ -11,6 +11,9 @@ import sun.tools.jconsole.Tab;
 
 import java.util.stream.Stream;
 
+/**
+ * 标量函数
+ */
 public class CustomScalarFunction {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();

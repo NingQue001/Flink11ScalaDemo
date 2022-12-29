@@ -32,7 +32,7 @@ public class RetractDemo {
                 "group by cnt");
         // 启用回撤流机制
         tEnv.toRetractStream(table, TypeInformation.of(new TypeHint<Tuple2<Long, Long>>() {
-        })).print();
+        })).print(); // scala可以通过隐式转换，转为回撤流，简洁一些
         env.execute();
     }
 }

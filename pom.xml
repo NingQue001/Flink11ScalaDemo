@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <flink-version>1.11.1</flink-version>
+        <flink-version>1.13.6</flink-version>
         <scala-version>2.12</scala-version>
     </properties>
 
@@ -92,18 +92,25 @@
         <!-- flinksql cli start -->
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-sql-connector-kafka_2.11</artifactId>
+            <artifactId>flink-sql-connector-kafka_${scala-version}</artifactId>
             <version>${flink-version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-sql-connector-elasticsearch6_2.11</artifactId>
+            <artifactId>flink-sql-connector-elasticsearch6_${scala-version}</artifactId>
             <version>${flink-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.iceberg</groupId>
+            <artifactId>iceberg-flink</artifactId>
+            <version>0.11.1</version>
+        </dependency>
+
         <!-- dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-jdbc_2.11</artifactId>
-            <artifactId>flink-jdbc_2.11</artifactId>
+            <artifactId>flink-connector-jdbc_${scala-version}</artifactId>
+            <artifactId>flink-jdbc_${scala-version}</artifactId>
             <version>${flink-version}</version>
         </dependency -->
         <dependency>
@@ -116,7 +123,7 @@
         <!-- orc？？？ 列式存储数据 -->
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-orc_2.11</artifactId>
+            <artifactId>flink-orc_${scala-version}</artifactId>
             <version>${flink-version}</version>
         </dependency>
 
@@ -128,7 +135,7 @@
 
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-hadoop-compatibility_2.11</artifactId>
+            <artifactId>flink-hadoop-compatibility_${scala-version}</artifactId>
             <version>${flink-version}</version>
         </dependency>
 
@@ -136,12 +143,6 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-cep_${scala-version}</artifactId>
             <version>${flink-version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-java-examples_2.11</artifactId>
-            <version>0.10.2</version>
         </dependency>
 
         <dependency>
