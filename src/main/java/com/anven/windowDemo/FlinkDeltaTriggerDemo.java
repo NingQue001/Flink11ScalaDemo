@@ -30,7 +30,7 @@ import java.util.Iterator;
  * GlobalWindow + DeltaTrigger实现按位置触发窗口
  *
  * 常用触发器：
- * 1）DeltaTrigger：当前元素与触发上一个窗口的元素相比较，如果达到闸值，则触发
+ * 1）DeltaTrigger：当前元素与触发上一个窗口的元素相比较，如果达到阈值，则触发
  * 2）EventTimeTrigger：􏰚􏰟􏰠􏰡􏰆􏰚􏰟􏰠􏰡􏰆一次触发，watermark大于窗口结束时触发􏰢􏰣􏰤􏰥􏰦􏰧􏰨􏰩􏰨􏰠􏰡􏰢􏰣􏰤􏰥􏰦􏰧􏰨􏰩􏰨􏰠􏰡
  * 3）ProcessingTimeTrigger：一次触发，machine time大于窗口结束时触发􏰢􏰣􏰤􏰥􏰦􏰧􏰨􏰩􏰨􏰠􏰡􏰢􏰣􏰤􏰥􏰦􏰧􏰨􏰩􏰨􏰠􏰡
  * 4）ContinuousEventTimeTrigger：多次触发，基于EventTime的固定时间间隔
@@ -72,9 +72,9 @@ public class FlinkDeltaTriggerDemo {
                     }
                 })
                 .keyBy(0)
-                // 指定窗口
+                // 全局窗口
                 .window(GlobalWindows.create())
-                // DeltaTrigger
+                // DeltaTrigger，计算delta值，达到阈值则触发
                 .trigger(DeltaTrigger.of(10000,
                         new DeltaFunction<Tuple4<Integer, Integer, Double, Long>>() {
                             @Override
