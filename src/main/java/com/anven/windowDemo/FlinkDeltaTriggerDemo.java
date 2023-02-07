@@ -89,7 +89,7 @@ public class FlinkDeltaTriggerDemo {
 
                     }
 
-                    /*TODO 窗口触发后当前窗口数据，便于统计每个窗口的最大速度，而不至于收到前面窗口数据的影响*/
+                    /*TODO 窗口触发后清除当前窗口数据，便于统计每个窗口的最大速度，而不至于收到前面窗口数据的影响*/
                     @Override
                     public void evictAfter(Iterable<TimestampedValue<Tuple4<Integer, Integer, Double, Long>>> elements, int size, GlobalWindow window, EvictorContext evictorContext) {
                         Iterator<TimestampedValue<Tuple4<Integer, Integer, Double, Long>>> iterator = elements.iterator();
