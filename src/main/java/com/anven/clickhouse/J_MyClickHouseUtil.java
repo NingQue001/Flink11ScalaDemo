@@ -19,7 +19,8 @@ public class J_MyClickHouseUtil extends RichSinkFunction<J_User> {
     @Override
     public void open(Configuration parameters) throws Exception {
         super.open(parameters);
-        connection = ClickHouseUtil.getConn("10.1.5.73", 8123, "tutorial");
+//        connection = ClickHouseUtil.getConn("10.1.5.73", 8123, "default");
+        connection = ClickHouseUtil.getBalanceConn();
     }
 
     @Override
