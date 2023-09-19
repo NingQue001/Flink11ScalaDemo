@@ -150,6 +150,37 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.73</version>
         </dependency>
+
+        <!-- Hive相关 start -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-hive_${scala-version}</artifactId>
+            <version>${flink-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-exec</artifactId>
+            <version>2.3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-common</artifactId>
+            <version>3.3.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-core</artifactId>
+            <version>3.3.4</version>
+        </dependency>
+        <!-- Hive相关 end -->
+
+        <!-- 写入数据到clickhouse -->
+        <dependency>
+            <groupId>ru.yandex.clickhouse</groupId>
+            <artifactId>clickhouse-jdbc</artifactId>
+            <version>0.1.54</version>
+        </dependency>
     </dependencies>
 
     <build>
