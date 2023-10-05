@@ -50,6 +50,7 @@ public class FlinkTumblingWindowsLeftJoinDemo {
                 .where(value -> value.f0)
                 .equalTo(value -> value.f0)
                 .window(TumblingEventTimeWindows.of(Time.seconds(windowSize)))
+//                .allowedLateness(Time.minutes(10))  // 窗口都可以设置允许数据迟到的时间
                 .apply(new LeftJoin())
                 .print();
 
