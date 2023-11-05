@@ -2,6 +2,8 @@ package com.anven.concurrentDemo;
 
 /**
  * 顺序锁
+ *
+ * https://zhuanlan.zhihu.com/p/385855265
  */
 public class LeftRightLock {
     private final Object right = new Object();
